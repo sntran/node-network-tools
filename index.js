@@ -50,6 +50,7 @@ var getConnectedClients = function(startIP, total, callback) {
 
 var Monitor = function (options) {
     this.timer = null;
+    this.previous = {};
     events.EventEmitter.call(this);
     this.ping(options);
 }
@@ -71,7 +72,25 @@ Monitor.prototype.ping = function(options) {
             if (err) {
                 stream.emit("error", err);
             } else {
+                var previous = stream.previous, updates = {};
+                for(var mac in activeClients){
+                    var ip = activeClients[mac];
+                    updates[mac] = ip; // Clone the new data.
+                    if (previous.hasOwnProperty(mac)){
+                        // Remove all duplicate clients from previous list
+                        // so that it only contains old clients.
+                        delete previous[mac];
+                    } else {
+                        stream.emit("in", {mac: mac, ip: ip});
+                    }
+                }
+                for (var mac in previous) {
+                    var ip = previous[mac];
+                    // After the first loop, previous now only contains old clients
+                    stream.emit("out", {mac: mac, ip: ip});
+                }
                 stream.emit("update", activeClients);
+                stream.previous = updates;
             }
         });
     }, stream.frequency);

@@ -44,14 +44,14 @@ getConnectedClients("10.0.1.10", 5, function(clients) {
 
 ```js
 var monitor = new Monitor({
-    startIP: "10.0.1.10",
-    total: 5,
-    frequency: 60 // in second
+    startIP: "10.0.1.50",
+    total: 100,
+    frequency: 10 // in second
 });
-monitor.on("update", function(clients) {
-    console.log(clients);
-}).on("error", function(err) {
-    console.log(err.message);
+monitor.on("in", function(client) {
+    console.log("in", client);
+}).on("out", function(client) {
+    console.log("out", client);
 });
 ```
 
