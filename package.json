@@ -1,22 +1,22 @@
 {
-  "name": "wifi-tools",
+  "name": "node-network-tools",
   "version": "0.0.1",
-  "description": "Utilities to interact with Wifi network.",
+  "description": "Utilities to interact with network.",
   "main": "index.js",
   "scripts": {
     "test": "for f in tests/*; do echo \"$f\"; node \"$f\"; done; echo 'passed!'; exit 0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sntran/wifi-tools"
+    "url": "https://github.com/sntran/node-network-tools"
   },
   "keywords": [
-    "wifi"
+    "network, monitor, ping"
   ],
   "author": "Son Tran-Nguyen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sntran/wifi-tools/issues"
+    "url": "https://github.com/sntran/node-network-tools/issues"
   },
   "dependencies": {
     "arp-a": "0.0.1",

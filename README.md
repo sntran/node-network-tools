@@ -1,7 +1,7 @@
-wifi-tools
-==========
+node-network-tools
+==================
 
-Utilities to interact with Wifi network.
+Utilities to interact with network.
 
 Since this library uses raw sockets instead of spawning process,
 you need to run your application with root priviledge.
@@ -9,8 +9,13 @@ you need to run your application with root priviledge.
 ### Ping
 
 ```js
-ping(ip, function(alive) {
-    
+ping(ip, function(err, target) {
+    if (err) {
+        console.log(target + ": Not Alive");
+    } else {
+        console.log(target + ": Alive");
+    }
+}
 });
 ```
 
@@ -31,7 +36,7 @@ populateARP("10.0.1.10", 5, function(ips) {
 ### Get connected clients on the network
 
 ```js
-getConnectedClients("10.0.1.10", 5, function(clients) {
+getConnectedClients("10.0.1.10", 5, function(err, clients) {
     /* clients = {
         "e0:xx:xx:xx:xx:xx": "10.0.1.8",
         "b8:xx:xx:xx:xx:xx": "10.0.1.11",

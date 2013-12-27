@@ -15,9 +15,9 @@ var DEFAULT_FREQUENCY = 60;
 
 var populateARP = function(address, total, callback) {
     var count = total, ips = {};
- 
+    
+    // Get a range of surrounding IP addresses
     range(address, total).forEach(function( address, index) {
-        // Get a range of surrounding IP addresses
         ping(address, function(err, target) {
             if (err) ips[address] = false;
             ips[address] = true;
@@ -31,8 +31,8 @@ var populateARP = function(address, total, callback) {
 
 var getConnectedClients = function(startIP, total, callback) {
     var activeClients = {};
+    // Populate ARP tale
     populateARP(startIP, total, function(ips) {
-        // Populate ARP tale
         arp.table(function(err, entry) {
             if (err) return callback(err, activeClients);
 
@@ -60,8 +60,8 @@ Monitor.prototype.ping = function(options) {
     var stream = this;
 
     if (typeof options !== 'object') return; // No specs, bail out
-    var startIP = options.startIP || this.startIP; // Either new poll, or resume with or without a new url
-    if (!startIP) return; // No known url, bail out
+    var startIP = options.startIP || this.startIP; // Either new ping, or resume
+    if (!startIP) return; // No known startIP, bail out
     var total = options.total || 1;
 
     this.startIP = startIP;
