@@ -1,0 +1,26 @@
+{
+  "name": "wifi-tools",
+  "version": "0.0.1",
+  "description": "Utilities to interact with Wifi network.",
+  "main": "index.js",
+  "scripts": {
+    "test": "for f in tests/*; do echo \"$f\"; node \"$f\"; done; echo 'passed!'; exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sntran/wifi-tools"
+  },
+  "keywords": [
+    "wifi"
+  ],
+  "author": "Son Tran-Nguyen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sntran/wifi-tools/issues"
+  },
+  "dependencies": {
+    "arp-a": "0.0.1",
+    "ipv4-range": "0.0.0",
+    "ping": "~0.1.7"
+  }
+}
