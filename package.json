@@ -1,5 +1,5 @@
 {
-  "name": "node-network-tools",
+  "name": "network-tools",
   "version": "0.0.1",
   "description": "Utilities to interact with network.",
   "main": "index.js",
