@@ -13,7 +13,7 @@ function setIntervalAndExecute(fn, t) {
 var DEFAULT_FREQUENCY = 60;
 
 var populateARP = function(address, total, callback) {
-    var count = total, ips = [];
+    var count = total, ips = {};
  
     range(address, total).forEach(function( address, index) {
         // Get a range of surrounding IP addresses
@@ -92,12 +92,3 @@ module.exports.ping = ping;
 module.exports.populateARP = populateARP;
 module.exports.getConnectedClients = getConnectedClients;
 module.exports.Monitor = Monitor;
-
-// var monitor = new Monitor({
-//     startIP: "10.0.1.10",
-//     total: 20,
-//     frequency: 10
-// });
-// monitor.on("update", function(clients) {
-//     console.log(clients);
-// });
