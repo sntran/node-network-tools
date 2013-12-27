@@ -21,6 +21,6 @@
   "dependencies": {
     "arp-a": "0.0.1",
     "ipv4-range": "0.0.0",
-    "ping": "~0.1.7"
+    "net-ping": "~1.1.9"
   }
 }

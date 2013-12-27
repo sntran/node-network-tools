@@ -1,5 +1,6 @@
 var range = require('ipv4-range');
-var ping = require('ping').sys.probe;
+var session = require ("net-ping").createSession({timeout: 500});
+var ping = session.pingHost.bind(session);
 var arp = require('arp-a');
 
 var events = require('events'),
@@ -17,8 +18,9 @@ var populateARP = function(address, total, callback) {
  
     range(address, total).forEach(function( address, index) {
         // Get a range of surrounding IP addresses
-        ping(address, function(alive) {
-            ips[address] = alive;
+        ping(address, function(err, target) {
+            if (err) ips[address] = false;
+            ips[address] = true;
             // Populate ARP table by pinging the IPs
             if (--count === 0) {
                 callback(ips) ;
